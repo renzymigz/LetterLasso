@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    
+    <!-- Base -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M40,180 L160,180"
+        android:strokeWidth="4"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"/>
+    
+    <!-- Vertical pole -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M100,180 L100,40"
+        android:strokeWidth="4"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"/>
+    
+    <!-- Top beam -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M100,40 L160,40"
+        android:strokeWidth="4"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"/>
+    
+    <!-- Rope -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M160,40 L160,60"
+        android:strokeWidth="4"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"/>
+    
+    <!-- Head -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M160,60 A20,20 0 1,1 160,100 A20,20 0 1,1 160,60"
+        android:strokeWidth="4"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"/>
+    
+    <!-- Body -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M160,100 L160,140"
+        android:strokeWidth="4"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"/>
+    
+    <!-- Left Arm -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M160,120 L140,140"
+        android:strokeWidth="4"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"/>
+    
+    <!-- Right Arm -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M160,120 L180,140"
+        android:strokeWidth="4"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"/>
+    
+    <!-- Left Leg -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M160,140 L150,180"
+        android:strokeWidth="4"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"/>
+</vector> 

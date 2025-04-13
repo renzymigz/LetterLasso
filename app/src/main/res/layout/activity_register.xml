@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="24dp"
+    tools:context=".RegisterActivity">
+
+    <LinearLayout
+        android:background="@drawable/rounded_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="320dp"
+        android:layout_gravity="center"
+        android:padding="15dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="120pt"
+            android:layout_height="35dp"
+            android:hint="Email"
+            android:paddingStart="10dp"
+            android:textSize="15sp"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/edittext_rounded"
+            android:layout_marginBottom="5dp"
+            tools:ignore="RtlSymmetry" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="120pt"
+            android:layout_height="35dp"
+            android:background="@drawable/edittext_rounded"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="237dp"
+            android:layout_height="wrap_content"
+
+            android:paddingTop="8dp"
+            android:text="Birthday"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinner_day"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_rounded"
+                android:paddingStart="10dp"
+                android:textSize="13sp"
+                />
+
+            <Spinner
+                android:id="@+id/spinner_month"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_rounded"
+                android:paddingStart="10dp"
+                android:textSize="13sp" />
+
+            <Spinner
+                android:id="@+id/spinner_year"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_rounded"
+                android:paddingStart="10dp"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="231dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:layout_margin="3dp"
+            android:text="By registering you are agreeing to our \nEULA and Privacy Policy"
+            android:textSize="11sp"
+            android:gravity="center"/>
+        <Button
+            android:id="@+id/register"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:background="@drawable/button_rounded"
+            android:text="REGISTER"
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/vhs_gothic"
+            android:textStyle="bold"
+            android:elevation="20dp"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            />
+
+
+
+        <TextView
+            android:id="@+id/account_already"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Already have an account?"
+            android:textSize="11sp"
+            android:clickable="true"
+            android:focusable="true"/>
+    </LinearLayout>
+
+    <Button
+        android:fontFamily="@font/vhs_gothic"
+        android:id="@+id/register_close_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="start"
+        android:background="@drawable/red_button_rounded"
+        android:text="X"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:translationY="-25dp"/>
+
+</LinearLayout>
