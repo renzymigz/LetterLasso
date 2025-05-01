@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".fragments.NextLevelFragment"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="100px"
+    android:layout_margin="60px"
+    android:background="@drawable/play_button">
+
+    <TextView
+        android:id="@+id/message_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/vhs_gothic"
+        android:text="WELL DONE!"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#5a400c"
+        android:layout_marginBottom="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <Button
+            android:id="@+id/return_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Return"
+            android:fontFamily="@font/vhs_gothic"
+            android:padding="12dp"
+            android:textSize="18sp"
+            android:backgroundTint="#5a400c"
+            android:textColor="#fffce8"/>
+            <Button
+                android:id="@+id/next_level_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next Level"
+                android:fontFamily="@font/vhs_gothic"
+                android:padding="12dp"
+                android:textSize="18sp"
+                android:backgroundTint="#5a400c"
+                android:textColor="#fffce8"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

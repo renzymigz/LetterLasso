@@ -1,11 +1,14 @@
 package cit.edu.letterlasso
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Intent
 import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -18,6 +21,16 @@ class LandingPageActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
+
+        val logoContainer = findViewById<FrameLayout>(R.id.logoContainer)
+
+        val floatAnim = ObjectAnimator.ofFloat(logoContainer, "translationY", 0f, -10f, 0f).apply {
+            duration = 2000
+            repeatCount = ValueAnimator.INFINITE
+            repeatMode = ValueAnimator.REVERSE
+        }
+
+        floatAnim.start()
 
         val profile_button = findViewById<ImageView>(R.id.nav_profile)
         val settings_button = findViewById<ImageView>(R.id.nav_settings)

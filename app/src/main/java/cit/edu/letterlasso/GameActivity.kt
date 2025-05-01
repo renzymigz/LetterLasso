@@ -1,19 +1,32 @@
 package cit.edu.letterlasso
 
 import android.app.Activity
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.BackgroundColorSpan
+import android.text.style.LeadingMarginSpan
 import android.util.Log
+import android.view.Gravity
+import android.view.View
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import cit.edu.letterlasso.fragments.BottomNavFragment
+import cit.edu.letterlasso.fragments.NextLevelFragment
+import cit.edu.letterlasso.fragments.RetryLevelFragment
 
 class GameActivity : Activity() {
     private lateinit var wordTextView: TextView
     private lateinit var hangmanImageView: ImageView
     private lateinit var lettersContainer: LinearLayout
+    private lateinit var levelTitleTextView: TextView
     private var currentWord: String = ""
     private var guessedLetters: MutableSet<Char> = mutableSetOf()
     private var remainingGuesses: Int = 6
@@ -30,7 +43,7 @@ class GameActivity : Activity() {
         try {
             super.onCreate(savedInstanceState)
             Log.d("GameActivity", "onCreate started")
-            
+
             setContentView(R.layout.activity_game)
             Log.d("GameActivity", "setContentView completed")
 
@@ -38,6 +51,7 @@ class GameActivity : Activity() {
             wordTextView = findViewById(R.id.word_text_view)
             hangmanImageView = findViewById(R.id.hangman_image_view)
             lettersContainer = findViewById(R.id.letters_container)
+            levelTitleTextView = findViewById(R.id.level_title)
             Log.d("GameActivity", "Views initialized")
 
             // Get game parameters from intent
@@ -46,20 +60,25 @@ class GameActivity : Activity() {
             val level = intent.getIntExtra("level", 1)
             Log.d("GameActivity", "Category: $category, Difficulty: $difficulty, Level: $level")
 
+            // Update level title
+            levelTitleTextView.text = "Level $level"
+            levelTitleTextView.setTextColor(Color.parseColor("#ffd493"))
+            levelTitleTextView.typeface = ResourcesCompat.getFont(this, R.font.vhs_gothic)
+
             // Set up the game
             setupGame(category, difficulty, level)
             Log.d("GameActivity", "Game setup completed")
 
             // Add the bottom navigation fragment
-            try {
-                val fragmentManager = fragmentManager
-                val fragmentTransaction = fragmentManager.beginTransaction()
-                fragmentTransaction.add(R.id.bottom_nav_container, BottomNavFragment(), "bottom_nav")
-                fragmentTransaction.commit()
-                Log.d("GameActivity", "Bottom navigation fragment added")
-            } catch (e: Exception) {
-                Log.e("GameActivity", "Error adding bottom navigation fragment", e)
-            }
+//            try {
+//                val fragmentManager = fragmentManager
+//                val fragmentTransaction = fragmentManager.beginTransaction()
+//                fragmentTransaction.add(R.id.bottom_nav_container, BottomNavFragment(), "bottom_nav")
+//                fragmentTransaction.commit()
+//                Log.d("GameActivity", "Bottom navigation fragment added")
+//            } catch (e: Exception) {
+//                Log.e("GameActivity", "Error adding bottom navigation fragment", e)
+//            }
 
             // Set up letter buttons last
             setupLetterButtons()
@@ -94,33 +113,48 @@ class GameActivity : Activity() {
             var currentRow: LinearLayout? = null
             var buttonCount = 0
 
+            // Create the LinearLayout for buttons
+            val rowLayoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            rowLayoutParams.gravity = Gravity.CENTER // Ensures that the row is centered in its parent
+
             for (letter in alphabet) {
                 if (buttonCount % 7 == 0) {
+                    // Create a new row layout
                     currentRow = LinearLayout(this).apply {
                         orientation = LinearLayout.HORIZONTAL
-                        layoutParams = LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT
-                        )
+                        layoutParams = rowLayoutParams
+                        gravity = Gravity.CENTER // Ensures the buttons are centered in the row
                     }
                     lettersContainer.addView(currentRow)
                 }
 
+                val typeface = ResourcesCompat.getFont(this, R.font.vhs_gothic)
+
                 val button = Button(this).apply {
                     text = letter.toString()
                     textSize = 20f
-                    layoutParams = LinearLayout.LayoutParams(
-                        0,
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        1f
-                    ).apply {
+                    setBackgroundResource(R.drawable.button_background)
+
+                    // Set the button layout
+                    typeface?.let{ this.typeface = it}
+                    layoutParams = LinearLayout.LayoutParams(130, 130).apply {
                         setMargins(4, 4, 4, 4)
                     }
+                    setTextColor(Color.parseColor("#ffd493"))
+
+                    // Center the text inside the button
+                    gravity = Gravity.CENTER
+
                     setOnClickListener {
                         handleLetterGuess(letter)
                         isEnabled = false
+                        alpha = 0.5f
                     }
                 }
+
                 currentRow?.addView(button)
                 buttonCount++
             }
@@ -141,16 +175,64 @@ class GameActivity : Activity() {
                 updateWordDisplay()
                 if (!wordTextView.text.contains("_")) {
                     gameWon = true
-                    Toast.makeText(this, "Congratulations! You won!", Toast.LENGTH_SHORT).show()
-                    finish()
+                    Toast.makeText(this, "Level Complete!", Toast.LENGTH_SHORT).show()
+
+                    val nextLevel = intent.getIntExtra("level", 1) + 1
+                    val category = intent.getStringExtra("category") ?: "Animals"
+                    val difficulty = intent.getStringExtra("difficulty") ?: "Easy"
+
+                    // Check if all levels are completed
+                    if (nextLevel > 5) {
+                        // All levels completed, redirect to difficulty page
+                        Toast.makeText(this, "Congratulations! You've completed $difficulty difficulty!", Toast.LENGTH_LONG).show()
+                        
+                        // Save completion status
+                        val prefs = getSharedPreferences("game_progress", MODE_PRIVATE)
+                        val editor = prefs.edit()
+                        when (difficulty) {
+                            "Easy" -> editor.putBoolean("${category}_easy_completed", true)
+                            "Medium" -> editor.putBoolean("${category}_medium_completed", true)
+                        }
+                        editor.apply()
+                        
+                        val intent = Intent(this, DifficultyActivity::class.java)
+                        intent.putExtra("category", category)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        // Show NextLevelFragment for next level
+                        val fragmentTransaction = fragmentManager.beginTransaction()
+                        fragmentTransaction.replace(R.id.next_level_container, NextLevelFragment.newInstance(category, difficulty, nextLevel))
+                        fragmentTransaction.commit()
+
+                        findViewById<FrameLayout>(R.id.next_level_container).visibility = View.VISIBLE
+                    }
+
+                    // Disable all letter buttons since the game is won
+                    disableAllLetterButtons()
                 }
             } else {
                 // Wrong guess
                 remainingGuesses--
                 updateHangmanImage()
                 if (remainingGuesses <= 0) {
+                    // Game over, show the retry fragment
+                    val category = intent.getStringExtra("category") ?: "Animals"
+                    val difficulty = intent.getStringExtra("difficulty") ?: "Easy"
+                    val level = intent.getIntExtra("level", 1)
+
+                    // Show RetryLevelFragment
                     Toast.makeText(this, "Game Over! The word was: $currentWord", Toast.LENGTH_SHORT).show()
-                    finish()
+
+                    // Show RetryLevelFragment
+                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    fragmentTransaction.replace(R.id.next_level_container, RetryLevelFragment.newInstance(category, difficulty, level))
+                    fragmentTransaction.commit()
+
+                    findViewById<FrameLayout>(R.id.next_level_container).visibility = View.VISIBLE
+
+                    // Disable all letter buttons since the game is lost
+                    disableAllLetterButtons()
                 }
             }
         } catch (e: Exception) {
@@ -159,12 +241,97 @@ class GameActivity : Activity() {
         }
     }
 
+    private fun disableAllLetterButtons() {
+        for (i in 0 until lettersContainer.childCount) {
+            val row = lettersContainer.getChildAt(i) as? LinearLayout
+            row?.let {
+                for (j in 0 until it.childCount) {
+                    val button = it.getChildAt(j) as? Button
+                    button?.let { btn ->
+                        btn.isEnabled = false
+                        btn.alpha = 0.5f
+                    }
+                }
+            }
+        }
+    }
+
     private fun updateWordDisplay() {
         try {
             val displayWord = currentWord.map { letter ->
                 if (letter in guessedLetters) letter else '_'
             }.joinToString(" ")
-            wordTextView.text = displayWord
+            
+            // Create a SpannableString to style the text
+            val spannableString = android.text.SpannableString(displayWord)
+            
+            // Create a custom background drawable with padding
+            val backgroundDrawable = android.graphics.drawable.GradientDrawable().apply {
+                setColor(Color.WHITE)
+                cornerRadius = 100f
+            }
+            
+            // Fixed width for all boxes
+            val fixedBoxWidth = 100 // pixels
+            
+            // Add background and padding to each character
+            var start = 0
+            for (i in 0 until displayWord.length) {
+                if (displayWord[i] != ' ') {
+                    // Create a custom span with padding
+                    val span = object : android.text.style.ReplacementSpan() {
+                        override fun getSize(
+                            paint: android.graphics.Paint,
+                            text: CharSequence,
+                            start: Int,
+                            end: Int,
+                            fm: android.graphics.Paint.FontMetricsInt?
+                        ): Int {
+                            return fixedBoxWidth
+                        }
+
+                        override fun draw(
+                            canvas: android.graphics.Canvas,
+                            text: CharSequence,
+                            start: Int,
+                            end: Int,
+                            x: Float,
+                            top: Int,
+                            y: Int,
+                            bottom: Int,
+                            paint: android.graphics.Paint
+                        ) {
+                            // Draw background with fixed width
+                            backgroundDrawable.setBounds(
+                                x.toInt(),
+                                top - 20,
+                                x.toInt() + fixedBoxWidth,
+                                bottom + 20
+                            )
+                            backgroundDrawable.draw(canvas)
+                            
+                            // Center the text in the box
+                            val textWidth = paint.measureText(text, start, end)
+                            val textX = x + (fixedBoxWidth - textWidth) / 2
+                            canvas.drawText(text, start, end, textX, y.toFloat(), paint)
+                        }
+                    }
+                    
+                    spannableString.setSpan(
+                        span,
+                        start,
+                        start + 1,
+                        android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+                start++
+            }
+            
+            // Set the text with the background
+            wordTextView.text = spannableString
+            wordTextView.setTextColor(Color.BLACK)
+            wordTextView.textSize = 30f
+            
         } catch (e: Exception) {
             Log.e("GameActivity", "Error in updateWordDisplay", e)
         }
@@ -187,4 +354,4 @@ class GameActivity : Activity() {
             Log.e("GameActivity", "Error in updateHangmanImage", e)
         }
     }
-} 
+}
