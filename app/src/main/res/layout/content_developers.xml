@@ -13,7 +13,7 @@
         android:layout_margin="16dp"
         android:background="@drawable/rounded_bg"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,8 +47,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
             android:paddingBottom="16dp">
 
             <ImageView
@@ -59,38 +60,43 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/icon2" />
 
-            <TextView
-                android:id="@+id/migallos"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/vhs_gothic"
-                android:paddingTop="8dp"
-                android:text="Florence Azriel Migallos"
-                android:textAlignment="center"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="'It is what it is.'"
-                android:textAlignment="center"
-                android:textSize="12sp"
-                android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/migallos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/vhs_gothic"
+                    android:paddingTop="8dp"
+                    android:text="Florence Azriel Migallos"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="'It is what it is.'"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
             android:paddingBottom="16dp">
 
             <ImageView
-
                 android:id="@+id/profile_image2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -98,27 +104,35 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/icon1" />
 
-            <TextView
-                android:id="@+id/developer_name2"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/vhs_gothic"
-                android:paddingTop="8dp"
-                android:text="Danielle Maxine Ocampo"
-                android:textAlignment="center"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="'Until all my scars bleed golden.'"
-                android:textAlignment="center"
-                android:textSize="12sp"
-                android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/developer_name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/vhs_gothic"
+                    android:paddingTop="8dp"
+                    android:text="Danielle Maxine Ocampo"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="'Until all my scars bleed golden.'"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
 
