@@ -17,12 +17,12 @@ class SettingsActivity : Activity() {
 
         val closeButton = findViewById<Button>(R.id.settings_close_button)
 
-        val logoutOption = findViewById<TextView>(R.id.logout_option)
+        val logoutOption = findViewById<TextView>(R.id.button_signout)
         logoutOption.setOnClickListener {
-            showLogoutConfirmation() // Show the confirmation dialog
+            showLogoutConfirmation()
         }
 
-        val aboutDevelopers = findViewById<TextView>(R.id.about_developers_option)
+        val aboutDevelopers = findViewById<TextView>(R.id.button_aboutus)
         aboutDevelopers.setOnClickListener {
             val intent = Intent(this, DevelopersActivity::class.java)
             startActivity(intent)
@@ -30,7 +30,7 @@ class SettingsActivity : Activity() {
 
         closeButton.setOnClickListener {
             Log.e("LetterLasso", "Profile button now is clicked!")
-            this.toast("Heading to landing page!")
+            //this.toast("Heading to landing page!")
             val intent = Intent(this, LandingPageActivity::class.java)
             startActivity(intent)
         }

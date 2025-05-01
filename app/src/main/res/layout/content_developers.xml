@@ -15,19 +15,34 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <TextView
-            android:id="@+id/developers_title"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/vhs_gothic"
-            android:padding="16dp"
-            android:text="MEET OUR DEVELOPERS"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/vhs_gothic"
+                android:gravity="center"
+                android:text="GET TO KNOW US"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_cancel"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/red_button_rounded"
+                android:fontFamily="@font/vhs_gothic"
+                android:text="X"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,7 +111,6 @@
                 android:textStyle="bold" />
 
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -105,20 +119,6 @@
                 android:textSize="12sp"
                 android:textStyle="italic" />
         </LinearLayout>
-
-        <Button
-
-            android:id="@+id/button_cancel"
-            android:layout_width="100dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="5sp"
-            android:background="@drawable/pngegg"
-            android:fontFamily="@font/vhs_gothic"
-            android:text="BACK"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
     </LinearLayout>
 </LinearLayout>
 
