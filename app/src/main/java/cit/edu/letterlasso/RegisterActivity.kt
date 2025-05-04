@@ -2,21 +2,26 @@ package cit.edu.letterlasso
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.util.Patterns
 import android.widget.*
-import cit.edu.letterlasso.app.MyApplication
 import cit.edu.letterlasso.util.toast
 import cit.edu.letterlasso.util.txt
 import java.util.Calendar
 
 class RegisterActivity : Activity() {
+    private lateinit var prefs: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
 
         val edittext_username = findViewById<EditText>(R.id.email)
         val edittext_password = findViewById<EditText>(R.id.password)
@@ -24,7 +29,6 @@ class RegisterActivity : Activity() {
         val button_back = findViewById<TextView>(R.id.back_button)
         val register_button = findViewById<TextView>(R.id.register)
         val dateInput = findViewById<EditText>(R.id.date_input)
-
 
         val togglePassword = findViewById<ImageView>(R.id.togglePassword)
         val toggleConfirmPassword = findViewById<ImageView>(R.id.toggleConfirmPassword)
@@ -94,16 +98,25 @@ class RegisterActivity : Activity() {
                 return@setOnClickListener
             }
 
-            (application as MyApplication).email = username
-            (application as MyApplication).password = password
-            (application as MyApplication).birthdate = birthdate
+            // Check if email already exists
+            val existingEmail = prefs.getString("email", "")
+            if (existingEmail == username) {
+                this.toast("This email is already registered")
+                return@setOnClickListener
+            }
 
+            // Save user credentials using SharedPreferences
+            val editor = prefs.edit()
+            editor.putString("email", username)
+            editor.putString("password", password)
+            editor.putString("birthdate", birthdate)
+            editor.putBoolean("is_logged_in", true)
+            editor.apply()
 
             startActivity(
                 Intent(this, LoginPageActivity::class.java)
             )
         }
-
 
         val button_login = findViewById<TextView>(R.id.account_already)
         button_login.setOnClickListener {
@@ -120,9 +133,5 @@ class RegisterActivity : Activity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-
-
     }
-
-
 }

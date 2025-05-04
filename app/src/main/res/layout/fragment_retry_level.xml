@@ -9,29 +9,30 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="100px"
-    android:layout_margin="60px"
-    android:background="@drawable/play_button">
+
+
+    android:background="@drawable/loser">
 
     <TextView
+        android:layout_marginTop="400dp"
         android:id="@+id/retry_message_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/vhs_gothic"
-        android:text="TRY AGAIN!"
-        android:textSize="28sp"
+        android:text="YOU DIED!"
+        android:textSize="40sp"
         android:textStyle="bold"
-        android:textColor="#5a400c"
+        android:textColor="#FFFFFF"
         android:layout_marginBottom="30dp"/>
 
     <TextView
         android:id="@+id/retry_perfect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You can do better! :)"
+        android:text="Ooooops..."
         android:textSize="15sp"
         android:textStyle="bold"
-        android:textColor="#5a400c"
+        android:textColor="#FFFFFF"
         android:layout_marginBottom="30dp"/>
 
     <LinearLayout
@@ -48,7 +49,7 @@
             android:fontFamily="@font/vhs_gothic"
             android:padding="12dp"
             android:textSize="18sp"
-            android:backgroundTint="#5a400c"
+            android:backgroundTint="#D52E53"
             android:textColor="#fffce8"/>
     <Button
         android:id="@+id/retry_level_button"
@@ -58,7 +59,7 @@
         android:fontFamily="@font/vhs_gothic"
         android:padding="12dp"
         android:textSize="18sp"
-        android:backgroundTint="#5a400c"
+        android:backgroundTint="#D52E53"
         android:textColor="#fffce8"/>
 
     </LinearLayout>

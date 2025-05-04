@@ -9,9 +9,9 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="100px"
-    android:layout_margin="60px"
-    android:background="@drawable/play_button">
+
+
+    android:background="@drawable/winner">
 
     <TextView
         android:id="@+id/message_text_view"
@@ -22,6 +22,7 @@
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="#5a400c"
+        android:layout_marginTop="300dp"
         android:layout_marginBottom="30dp"/>
 
     <LinearLayout

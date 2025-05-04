@@ -3,7 +3,9 @@ package cit.edu.letterlasso
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -13,7 +15,6 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import cit.edu.letterlasso.app.MyApplication
 
 class LoginPageActivity : Activity() {
     private lateinit var button_login: TextView
@@ -21,12 +22,16 @@ class LoginPageActivity : Activity() {
     private lateinit var button_back: Button
     private lateinit var edittext_username: EditText
     private lateinit var edittext_password: EditText
+    private lateinit var prefs: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_page)
 
         try {
+            // Initialize SharedPreferences
+            prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+
             // Initialize views
             button_login = findViewById(R.id.login)
             button_register = findViewById(R.id.register_now)
@@ -34,13 +39,11 @@ class LoginPageActivity : Activity() {
             edittext_username = findViewById(R.id.email)
             edittext_password = findViewById(R.id.password)
 
-            // Safely get stored credentials
-            if (application is MyApplication) {
-                val myApp = application as MyApplication
-                edittext_username.setText(myApp.email ?: "")
-                edittext_password.setText(myApp.password ?: "")
-            }
-
+            // Get stored credentials from SharedPreferences
+            val storedEmail = prefs.getString("email", "")
+            val storedPassword = prefs.getString("password", "")
+            edittext_username.setText(storedEmail)
+            edittext_password.setText(storedPassword)
 
             val togglePassword = findViewById<ImageView>(R.id.togglePassword)
             var isPasswordVisible = false
@@ -73,20 +76,21 @@ class LoginPageActivity : Activity() {
                     return@setOnClickListener
                 }
 
-                // Check credentials against registered values
-                if (application is MyApplication) {
-                    val myApp = application as MyApplication
+                // Check credentials against stored values
+                val storedEmail = prefs.getString("email", "")
+                val storedPassword = prefs.getString("password", "")
 
-                    if (username == myApp.email && password == myApp.password) {
-                        // Credentials match, go to LandingPage
-                        val intent = Intent(this, LandingPageActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
-                    }
+                if (username == storedEmail && password == storedPassword) {
+                    // Credentials match, update login status and go to LandingPage
+                    val editor = prefs.edit()
+                    editor.putBoolean("is_logged_in", true)
+                    editor.apply()
+
+                    val intent = Intent(this, LandingPageActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
-                    Toast.makeText(this, "Unexpected error. Try again.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
                 }
             }
 

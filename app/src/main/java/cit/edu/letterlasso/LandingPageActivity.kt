@@ -16,6 +16,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import cit.edu.letterlasso.fragments.BottomNavFragment
 
 class LandingPageActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,9 +33,6 @@ class LandingPageActivity : Activity() {
 
         floatAnim.start()
 
-        val profile_button = findViewById<ImageView>(R.id.nav_profile)
-        val settings_button = findViewById<ImageView>(R.id.nav_settings)
-        val help_button = findViewById<TextView>(R.id.nav_help)
         val play_button = findViewById<Button>(R.id.play_button)
 
         play_button.setOnClickListener {
@@ -44,25 +42,10 @@ class LandingPageActivity : Activity() {
             startActivity(intent)
         }
 
-        profile_button.setOnClickListener{
-            Log.e("LetterLasso", "Profile button now is clicked!")
-            Toast.makeText(this, "Heading to profile page!", Toast.LENGTH_LONG).show()
-            val intent = Intent(this, ProfilePageActivity::class.java)
-            startActivity(intent)
-        }
 
-        settings_button.setOnClickListener{
-            Log.e("LetterLasso", "Settings button now is clicked!")
-            Toast.makeText(this, "Heading to settings page!", Toast.LENGTH_LONG).show()
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }
-
-        help_button.setOnClickListener{
-            Log.e("LetterLasso", "Help button now is clicked!")
-            Toast.makeText(this, "Heading to help page!", Toast.LENGTH_LONG).show()
-            val intent = Intent(this, HelpPageActivity::class.java)
-            startActivity(intent)
-        }
+        val fragmentManager = fragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.bottom_nav_container, BottomNavFragment(), "bottom_nav")
+        fragmentTransaction.commit()
     }
 }

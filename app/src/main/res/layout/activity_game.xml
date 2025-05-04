@@ -1,66 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_2">
+    android:background="@drawable/gamebackground">
+
+    <!-- Hangman Image as Background -->
+    <ImageView
+        android:id="@+id/hangman_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/hangman_0"
+        android:scaleType="fitXY"/>
 
     <!-- Main game UI -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/level_title"
+        <LinearLayout
+            android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Level 1"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="16dp"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
 
-        <ImageView
-            android:id="@+id/hangman_image_view"
+            <ImageButton
+                android:id="@+id/return_home"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/play_button"
+                android:src="@drawable/home"
+                android:padding="12dp"
+                android:contentDescription="Return Home"
+                android:scaleType="centerInside"
+                android:layout_marginEnd="16dp"/>
+
+            <TextView
+                android:id="@+id/level_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Level 1"
+                android:textSize="24sp"
+                android:fontFamily="@font/daydream"
+                android:textColor="#5B400D"
+                android:textStyle="bold"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/heart_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/heart"
+                android:contentDescription="Remaining Guesses"
+                android:layout_marginStart="16dp"
+                android:alpha="1.0"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/hangman_0"
-            android:scaleType="fitCenter"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginTop="300dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
+            android:background="#315B400D"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Hint:"
+                android:padding="8dp"
+                android:textColor="#fee9a5"
+                android:fontFamily="@font/vhs_gothic"
+                android:textSize="14sp"
+                android:background="@drawable/hint_background"/>
+
+            <TextView
+                android:fontFamily="@font/vhs_gothic"
+                android:id="@+id/hint_text_view"
+                android:layout_marginTop="13dp"
+                android:text="Largest laand animal with"
+                android:textColor="#5B400D"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:letterSpacing="0.1"
+
+                android:gravity="center"
+                />
+        </LinearLayout>
+
 
         <TextView
-            android:id="@+id/hint_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="32sp"
-            android:letterSpacing="0.1"
-            android:gravity="center"
-            android:layout_marginBottom="16dp"/>
-
-        <TextView
+            android:padding="15dp"
             android:id="@+id/word_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="32sp"
             android:letterSpacing="0.1"
             android:gravity="center"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="0dp"/>
 
-        <ScrollView
-            android:layout_marginTop="20dp"
+        <LinearLayout
+            android:id="@+id/letters_container"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <LinearLayout
-                android:id="@+id/letters_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp"/>
-        </ScrollView>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp" />
 
         <FrameLayout
             android:id="@+id/bottom_nav_container"
@@ -68,18 +127,23 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <nl.dionsegijn.konfetti.xml.KonfettiView
+        android:id="@+id/konfettiView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingClass" />
+
     <!-- Next Level UI (hidden by default) -->
     <FrameLayout
         android:id="@+id/next_level_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/> <!-- hide until you need it -->
+        android:visibility="gone"/>
 
     <!-- Retry Level UI (hidden by default) -->
     <FrameLayout
         android:id="@+id/retry_level_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/> <!-- hide until you need it -->
-
+        android:visibility="gone"/>
 </FrameLayout>

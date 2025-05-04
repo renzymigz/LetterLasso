@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.Toast
 import cit.edu.letterlasso.adapters.DifficultyAdapter
@@ -21,6 +22,14 @@ class DifficultyActivity : Activity() {
         val category = intent.getStringExtra("category") ?: "Animals"
         val listView = findViewById<ListView>(R.id.difficulty_list)
         listView.adapter = DifficultyAdapter(category, this)
+
+        // Set up back button
+        val backButton = findViewById<ImageButton>(R.id.back_button)
+        backButton.setOnClickListener {
+            val intent = Intent(this, CategoriesActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         // Handle difficulty selection
         listView.setOnItemClickListener { _, _, position, _ ->

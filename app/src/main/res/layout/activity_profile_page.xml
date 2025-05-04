@@ -12,11 +12,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
+
         android:background="@drawable/rounded_bg"
         android:orientation="vertical"
         android:paddingLeft="20dp"
-        android:paddingTop="40dp"
         android:paddingRight="20dp">
 
         <!-- Horizontal Layout for profile & button lol -->
@@ -31,17 +30,20 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginBottom="15dp"
             android:gravity="center"
-            android:text="   Profile"
+            android:text="Profile"
             android:textSize="30sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="See and edit your details to lassolize your stuff."
+            android:textSize="14dp" />
 
-        <!--        <View-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="3.5dp"-->
-        <!--            android:background="@color/white"/>-->
 
 
         <!-- User Name -->
@@ -56,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"
-                android:text="Current Username"
+                android:text="Username"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -65,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_weight="2"
-
+                android:enabled="false"
                 android:background="@drawable/edittext_rounded"
                 android:hint="Enter your new username"
                 android:paddingStart="10dp"
@@ -84,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"
-                android:text="Current Email"
+                android:text="Email"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -112,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"
-                android:text="Current Password"
+                android:text="Password"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -127,6 +129,43 @@
                 android:paddingStart="10dp"
                 android:textColor="@color/black" />
         </LinearLayout>
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/white"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:text="Stats"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="Levels Unlocked:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/levels_unlocked_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="0/75"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/vhs_gothic" />
 
         <!-- Save Button -->
         <LinearLayout
