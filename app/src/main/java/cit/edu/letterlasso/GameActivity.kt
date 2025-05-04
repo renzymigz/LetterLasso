@@ -2,6 +2,8 @@ package cit.edu.letterlasso
 
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
+import android.media.MediaPlayer
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Spannable
@@ -39,6 +41,15 @@ class GameActivity : Activity() {
     private var guessedLetters: MutableSet<Char> = mutableSetOf()
     private var remainingGuesses: Int = 6
     private var gameWon: Boolean = false
+
+    // added for music
+    private lateinit var sharedPreferences: SharedPreferences
+    private var isSoundEnabled = true
+    private var correctGuessSound: MediaPlayer? = null
+    private var wrongGuessSound: MediaPlayer? = null
+    private var levelCompleteSound: MediaPlayer? = null
+    private var gameOverSound: MediaPlayer? = null
+    private var buttonClickSound: MediaPlayer? = null // added button click sound
 
     // Sample words for different categories and difficulties
     private val animalWords = mapOf(
@@ -200,6 +211,7 @@ class GameActivity : Activity() {
             val returnHomeButton = findViewById<ImageView>(R.id.return_home)
             Log.d("GameActivity", "Views initialized")
 
+
             // Set up home button click listener
             returnHomeButton.setOnClickListener {
                 // Save the current level as the last checkpoint
@@ -218,6 +230,18 @@ class GameActivity : Activity() {
                 startActivity(intent)
                 finish()
             }
+
+            // Load sound setting
+            sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
+            isSoundEnabled = sharedPreferences.getBoolean("isSoundEnabled", true)
+
+            // Initialize sound effects
+            correctGuessSound = MediaPlayer.create(this, R.raw.correct_guess)
+            wrongGuessSound = MediaPlayer.create(this, R.raw.wrong_guess)
+            levelCompleteSound = MediaPlayer.create(this, R.raw.level_complete)
+            gameOverSound = MediaPlayer.create(this, R.raw.game_over)
+            buttonClickSound = MediaPlayer.create(this, R.raw.button_click) // Initialize button click sound// Replace with your sound file
+
 
             // Get game parameters from intent
             val category = intent.getStringExtra("category") ?: "Animals"
@@ -252,6 +276,12 @@ class GameActivity : Activity() {
             Log.e("GameActivity", "Error in onCreate", e)
             Toast.makeText(this, "Error starting game: ${e.message}", Toast.LENGTH_LONG).show()
             finish()
+        }
+    }
+
+    private fun playSoundEffect(mediaPlayer: MediaPlayer?) {
+        if (isSoundEnabled && mediaPlayer != null) {
+            mediaPlayer.start()
         }
     }
 
@@ -377,11 +407,13 @@ class GameActivity : Activity() {
 
             if (letter in currentWord) {
                 // Correct guess
+                playSoundEffect(correctGuessSound)
                 updateWordDisplay()
                 if (!wordTextView.text.contains("_")) {
                     gameWon = true
                     showConfetti() // Show confetti when winning
                     Toast.makeText(this, "Level Complete!", Toast.LENGTH_SHORT).show()
+                    playSoundEffect(levelCompleteSound) // added
 
                     val nextLevel = intent.getIntExtra("level", 1) + 1
                     val category = intent.getStringExtra("category") ?: "Animals"
@@ -438,6 +470,7 @@ class GameActivity : Activity() {
                 }
             } else {
                 // Wrong guess
+                playSoundEffect(wrongGuessSound) // added sound
                 remainingGuesses--
                 updateHangmanImage()
                 if (remainingGuesses <= 0) {
@@ -454,6 +487,7 @@ class GameActivity : Activity() {
 
                     // Show RetryLevelFragment
                     Toast.makeText(this, "Game Over! The word was: $currentWord", Toast.LENGTH_SHORT).show()
+                    playSoundEffect(gameOverSound) // added sound
 
                     // Show RetryLevelFragment
                     val fragmentTransaction = fragmentManager.beginTransaction()
@@ -605,5 +639,19 @@ class GameActivity : Activity() {
         } catch (e: Exception) {
             Log.e("GameActivity", "Error in updateHangmanImage", e)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        correctGuessSound?.release()
+        correctGuessSound = null
+        wrongGuessSound?.release()
+        wrongGuessSound = null
+        levelCompleteSound?.release()
+        levelCompleteSound = null
+        gameOverSound?.release()
+        gameOverSound = null
+        buttonClickSound?.release() // Release button click sound
+        buttonClickSound = null
     }
 }

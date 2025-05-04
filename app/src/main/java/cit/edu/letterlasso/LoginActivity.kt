@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,14 +13,26 @@ import android.widget.TextView
 import cit.edu.letterlasso.util.toast
 
 class LoginActivity : Activity() {
+
+    // added music
+    private lateinit var sharedPreferences: SharedPreferences
+    private var isMusicEnabled = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        // added music
+        sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
+        isMusicEnabled = sharedPreferences.getBoolean("isMusicEnabled", true)
+
+        // Start the MusicService if music is enabled
+        if (isMusicEnabled) {
+            startService(Intent(this, MusicService::class.java))
+        }
+
         try {
-
             val logoContainer = findViewById<View>(R.id.logoContainer)
-
 
             val floatAnim = ObjectAnimator.ofFloat(logoContainer, "translationY", 0f, -10f, 0f).apply {
                 duration = 2000
