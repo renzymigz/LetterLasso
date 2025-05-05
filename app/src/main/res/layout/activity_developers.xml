@@ -159,7 +159,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/renzymigz" />
+                        android:src="@drawable/ying" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -195,7 +195,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="'Until all my scars bleed golden.'"
+                    android:text="'If it's not broken, I'm not done'"
                     android:layout_marginTop="5dp"
                     android:textAlignment="center"
                     android:textSize="12sp"

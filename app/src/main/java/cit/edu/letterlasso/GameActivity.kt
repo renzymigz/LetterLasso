@@ -225,6 +225,7 @@ class GameActivity : Activity() {
                 editor.apply()
 
                 // Return to difficulty page
+                playSoundEffect(buttonClickSound)
                 val intent = Intent(this, DifficultyActivity::class.java)
                 intent.putExtra("category", category)
                 startActivity(intent)
@@ -651,7 +652,7 @@ class GameActivity : Activity() {
         levelCompleteSound = null
         gameOverSound?.release()
         gameOverSound = null
-        buttonClickSound?.release() // Release button click sound
+        buttonClickSound?.release()
         buttonClickSound = null
     }
 }
