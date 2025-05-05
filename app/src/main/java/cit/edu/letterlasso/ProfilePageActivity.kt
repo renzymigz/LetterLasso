@@ -16,6 +16,7 @@ import cit.edu.letterlasso.util.toast
 class ProfilePageActivity : Activity() {
     private lateinit var userPrefs: SharedPreferences
     private lateinit var gamePrefs: SharedPreferences
+    private var isEditMode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,15 +39,14 @@ class ProfilePageActivity : Activity() {
         val storedUsername = userPrefs.getString("username", storedEmail?.substringBefore("@") ?: "User")
         val storedPassword = userPrefs.getString("password", "")
 
+        // Set initial state (view mode)
+        updateFieldsState(false)
+        saveButton.text = "Edit Profile"
 
         currentPassword.text = "Password" // Show dots for password
         userNameField.hint = "$storedUsername"
         userEmailField.hint = "Current: $storedEmail"
         userPasswordField.hint = "Enter new password"
-
-        // Enable email and password fields for editing
-        userEmailField.isEnabled = true
-        userPasswordField.isEnabled = true
 
         // Calculate and display progress
         val categories = listOf("Animals", "Fruits", "Countries", "Sports", "Food")
@@ -72,23 +72,42 @@ class ProfilePageActivity : Activity() {
         }
 
         saveButton.setOnClickListener {
-            val newEmail = userEmailField.text.toString().trim()
-            val newPassword = userPasswordField.text.toString().trim()
+            if (!isEditMode) {
+                // Switch to edit mode
+                isEditMode = true
+                saveButton.text = "Update Profile"
+                updateFieldsState(true)
+            } else {
+                // Save changes and switch back to view mode
+                val newEmail = userEmailField.text.toString().trim()
+                val newPassword = userPasswordField.text.toString().trim()
 
-            if (validateInputs(newEmail, newPassword)) {
-                // Update SharedPreferences with new values
-                val editor = userPrefs.edit()
-                editor.putString("email", newEmail)
-                if (newPassword.isNotEmpty()) {
-                    editor.putString("password", newPassword)
+                if (validateInputs(newEmail, newPassword)) {
+                    // Update SharedPreferences with new values
+                    val editor = userPrefs.edit()
+                    editor.putString("email", newEmail)
+                    if (newPassword.isNotEmpty()) {
+                        editor.putString("password", newPassword)
+                    }
+                    editor.apply()
+
+                    // Update the TextViews with the new values
+                    currentUserEmail.text = newEmail
+                    this.toast("Profile updated successfully!")
+                    
+                    // Switch back to view mode
+                    isEditMode = false
+                    saveButton.text = "Edit Profile"
+                    updateFieldsState(false)
                 }
-                editor.apply()
-
-                // Update the TextViews with the new values
-                currentUserEmail.text = newEmail
-                this.toast("Profile updated successfully!")
             }
         }
+    }
+
+    private fun updateFieldsState(editable: Boolean) {
+        findViewById<EditText>(R.id.user_name).isEnabled = editable
+        findViewById<EditText>(R.id.user_email).isEnabled = editable
+        findViewById<EditText>(R.id.password).isEnabled = editable
     }
 
     private fun validateInputs(email: String, password: String): Boolean {
