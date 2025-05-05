@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ListView
@@ -13,12 +14,17 @@ import cit.edu.letterlasso.fragments.BottomNavFragment
 
 class DifficultyActivity : Activity() {
     private lateinit var prefs: SharedPreferences
+    private var buttonClickSound: MediaPlayer? = null
+    private var itemClickSound: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_difficulty)
 
         prefs = getSharedPreferences("game_progress", Context.MODE_PRIVATE)
+        buttonClickSound = MediaPlayer.create(this, R.raw.button_click)
+        itemClickSound = MediaPlayer.create(this, R.raw.button_click)
+
         val category = intent.getStringExtra("category") ?: "Animals"
         val listView = findViewById<ListView>(R.id.difficulty_list)
         listView.adapter = DifficultyAdapter(category, this)
@@ -26,6 +32,7 @@ class DifficultyActivity : Activity() {
         // Set up back button
         val backButton = findViewById<ImageButton>(R.id.back_button)
         backButton.setOnClickListener {
+            playSoundEffect(buttonClickSound)
             val intent = Intent(this, CategoriesActivity::class.java)
             startActivity(intent)
             finish()
@@ -33,6 +40,7 @@ class DifficultyActivity : Activity() {
 
         // Handle difficulty selection
         listView.setOnItemClickListener { _, _, position, _ ->
+            playSoundEffect(itemClickSound)
             val difficulty = when (position) {
                 0 -> "Easy"
                 1 -> "Medium"
@@ -68,5 +76,21 @@ class DifficultyActivity : Activity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.bottom_nav_container, BottomNavFragment(), "bottom_nav")
         fragmentTransaction.commit()
+    }
+
+    private fun playSoundEffect(mediaPlayer: MediaPlayer?) {
+        val sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
+        val isSoundEnabled = sharedPreferences.getBoolean("isSoundEnabled", true)
+        if (isSoundEnabled && mediaPlayer != null) {
+            mediaPlayer.start()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        buttonClickSound?.release()
+        buttonClickSound = null
+        itemClickSound?.release()
+        itemClickSound = null
     }
 }

@@ -50,13 +50,6 @@ class SettingsActivity : Activity() {
 
         buttonClickSound = MediaPlayer.create(this, R.raw.button_click) // Initialize button click sound
 
-        //val closeButton = findViewById<Button>(R.id.settings_close_button)
-        //val logoutOption = findViewById<TextView>(R.id.button_signout)
-        //val aboutDevelopers = findViewById<TextView>(R.id.button_aboutus)
-
-        //soundEffectPlayer = MediaPlayer.create(this, R.raw.button_click) // for settings button clicks
-
-        // set initial states and UI
         updateSoundUI()
         updateMusicUI()
 
@@ -78,7 +71,8 @@ class SettingsActivity : Activity() {
 
         logoutOption.setOnClickListener {
             playSoundEffect(buttonClickSound) // Play sound on music icon click
-            showLogoutConfirmation()
+            val intent = Intent(this, LogoutActivity::class.java)
+            startActivity(intent)
         }
 
         aboutDevelopers.setOnClickListener {
@@ -95,27 +89,18 @@ class SettingsActivity : Activity() {
             startActivity(intent)
         }
 
-        logoutOption.setOnClickListener {
-            playSoundEffect(buttonClickSound) // Play sound on logout option click
-            showLogoutConfirmation()
-        }
-
-        aboutDevelopers.setOnClickListener {
-            playSoundEffect(buttonClickSound) // Play sound on about us click
-            val intent = Intent(this, DevelopersActivity::class.java)
-            startActivity(intent)
-        }
-
         policyButton.setOnClickListener {
             playSoundEffect(buttonClickSound) // Play sound on policy button click
-            // Handle policy button click
             Toast.makeText(this, "Privacy Policy Clicked", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, PrivacyPolicyActivity::class.java)
+            startActivity(intent)
         }
 
         termsButton.setOnClickListener {
             playSoundEffect(buttonClickSound) // Play sound on terms button click
-            // Handle terms button click
             Toast.makeText(this, "Terms and Conditions Clicked", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, TermsAndConditionsActivity::class.java)
+            startActivity(intent)
         }
 
         // Start the music service if enabled on creation

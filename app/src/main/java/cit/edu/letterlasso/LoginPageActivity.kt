@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -23,6 +24,9 @@ class LoginPageActivity : Activity() {
     private lateinit var edittext_username: EditText
     private lateinit var edittext_password: EditText
     private lateinit var prefs: SharedPreferences
+    private lateinit var sharedPreferences: SharedPreferences
+    private var isSoundEnabled = true
+    private var buttonClickSound: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,9 @@ class LoginPageActivity : Activity() {
         try {
             // Initialize SharedPreferences
             prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+            sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
+            isSoundEnabled = sharedPreferences.getBoolean("isSoundEnabled", true)
+            buttonClickSound = MediaPlayer.create(this, R.raw.button_click)
 
             // Initialize views
             button_login = findViewById(R.id.login)
@@ -49,6 +56,7 @@ class LoginPageActivity : Activity() {
             var isPasswordVisible = false
 
             togglePassword.setOnClickListener {
+                playSoundEffect(buttonClickSound)
                 if (isPasswordVisible) {
                     edittext_password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                     togglePassword.setImageResource(R.drawable.ic_eye_close)
@@ -63,6 +71,7 @@ class LoginPageActivity : Activity() {
 
             // Set up click listeners
             button_login.setOnClickListener {
+                playSoundEffect(buttonClickSound)
                 val username = edittext_username.text.toString()
                 val password = edittext_password.text.toString()
 
@@ -95,16 +104,30 @@ class LoginPageActivity : Activity() {
             }
 
             button_register.setOnClickListener {
+                playSoundEffect(buttonClickSound)
                 val intent = Intent(this, RegisterActivity::class.java)
                 startActivity(intent)
             }
 
             button_back.setOnClickListener {
+                playSoundEffect(buttonClickSound)
                 finish() // Just finish the activity instead of starting LoginActivity again
             }
         } catch (e: Exception) {
             Log.e("LoginPageActivity", "Error in onCreate", e)
             Toast.makeText(this, "An error occurred. Please try again.", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun playSoundEffect(mediaPlayer: MediaPlayer?) {
+        if (isSoundEnabled && mediaPlayer != null) {
+            mediaPlayer.start()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        buttonClickSound?.release()
+        buttonClickSound = null
     }
 }

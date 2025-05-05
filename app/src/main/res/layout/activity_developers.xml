@@ -4,268 +4,262 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2_dark"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/rounded_bg"
-        android:padding="20dp">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+             android:background="@drawable/rounded_bg">
 
-                <LinearLayout
+                <Button
+                    android:id="@+id/button_cancel"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/button_back"
+                    android:fontFamily="@font/vhs_gothic"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical"
-                    android:padding="10dp">
 
-                    <Button
-                        android:id="@+id/button_cancel"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/button_back"
-                        android:fontFamily="@font/vhs_gothic"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
+                    android:gravity="center"
+                    android:text="Developers"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-                    <TextView
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/cornered_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+
+
+            <!-- Florence Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="20dp"
+                android:paddingBottom="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:id="@+id/renzymigz"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:gravity="center"
-                        android:text="Developers"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/renzymigz" />
+                </androidx.cardview.widget.CardView>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3.5dp"
-                    android:background="@color/white" />
-
-                <!-- Florence Section -->
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/migallos"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="16dp">
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="8dp"
+                    android:text="Florence Azriel Migallos"
+                    android:textAlignment="center"
+                    android:textSize="18dp"
+                    android:layout_marginBottom="5dp"
+                    android:textStyle="bold" />
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center_horizontal"
-                        app:cardCornerRadius="50dp"
-                        app:cardElevation="4dp">
-
-                        <ImageView
-                            android:id="@+id/renzymigz"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/renzymigz" />
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:id="@+id/migallos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:paddingTop="8dp"
-                        android:text="Florence Azriel Migallos"
-                        android:textAlignment="center"
-                        android:textSize="18dp"
-                        android:layout_marginBottom="5dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="BSIT - 2nd year"
-                        android:textAlignment="center"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Student Developer"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textColor="#0384F4" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="'Nothing says work efficiency like panic mode.'"
-                        android:layout_marginTop="5dp"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textStyle="italic"
-                        android:paddingHorizontal="15dp"
-                        android:paddingVertical="10dp"
-                        android:textColor="#5b400d"
-                        android:background="@drawable/play_button" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Role &amp; Contribution"
-                        android:textStyle="bold"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="A passionate student developer; led the app’s development, crafted the UI, managed backend logic, and handled Git workflows."
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:background="@color/white" />
-
-                <!-- Danielle Section -->
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="16dp">
+                    android:layout_gravity="center_horizontal"
+                    android:text="BSIT - 2nd year"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center_horizontal"
-                        app:cardCornerRadius="50dp"
-                        app:cardElevation="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Student Developer"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textColor="#0384F4" />
 
-                        <ImageView
-                            android:id="@+id/ocampo"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/renzymigz" />
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:id="@+id/ocampoz"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:paddingTop="8dp"
-                        android:text="Danielle Maxine Ocampo"
-                        android:textAlignment="center"
-                        android:textSize="18dp"
-                        android:layout_marginBottom="5dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="BSIT - 2nd year"
-                        android:textAlignment="center"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Student Developer"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textColor="#0384F4" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="'Until all my scars bleed golden.'"
-                        android:layout_marginTop="5dp"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textStyle="italic"
-                        android:paddingHorizontal="15dp"
-                        android:paddingVertical="10dp"
-                        android:textColor="#5b400d"
-                        android:background="@drawable/play_button" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Role &amp; Contribution"
-                        android:textStyle="bold"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="A passionate student developer; contributed to UI ideas, assisted in feature planning, documented the project, and helped test and debug core features."
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/play_button"
-                    android:orientation="vertical">
+                    android:text="'Nothing says work efficiency like panic mode.'"
+                    android:layout_marginTop="5dp"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:textColor="#5b400d"
+                    android:background="@drawable/play_button" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="LetterLaso"
-                        android:layout_marginTop="5dp"
-                        android:textAlignment="center"
-                        android:textSize="18sp"
-                        android:paddingHorizontal="15dp"
-                        android:paddingTop="10dp"
-                        android:textColor="#5b400d"
-                        />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Role &amp; Contribution"
+                    android:textStyle="bold"
+                    android:textSize="15sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Version 0.0.1"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:paddingHorizontal="15dp"
-
-                        android:textColor="#5b400d"
-                        />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="©2025 LetterLaso Team"
-                        android:textAlignment="center"
-                        android:textSize="10sp"
-                        android:paddingHorizontal="15dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="10dp"
-                        android:textColor="#5b400d"
-                        />
-                </LinearLayout>
-
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A passionate student developer; led the app’s development, crafted the UI, managed backend logic, and handled Git workflows."
+                    android:textSize="12sp" />
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="20dp"
+                android:paddingBottom="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:id="@+id/ocampo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/renzymigz" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/ocampoz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="8dp"
+                    android:text="Danielle Maxine Ocampo"
+                    android:textAlignment="center"
+                    android:textSize="18dp"
+                    android:layout_marginBottom="5dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="BSIT - 2nd year"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Student Developer"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textColor="#0384F4" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="'Until all my scars bleed golden.'"
+                    android:layout_marginTop="5dp"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:textColor="#5b400d"
+                    android:background="@drawable/play_button" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Role &amp; Contribution"
+                    android:textStyle="bold"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A passionate student developer; contributed to UI ideas, assisted in feature planning, documented the project, and helped test and debug core features."
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Footer -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/play_button"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="LetterLaso"
+                    android:layout_marginTop="5dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:paddingHorizontal="15dp"
+                    android:paddingTop="10dp"
+                    android:textColor="#5b400d" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Version 0.0.1"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="15dp"
+                    android:textColor="#5b400d" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="©2025 LetterLaso Team"
+                    android:textAlignment="center"
+                    android:textSize="10sp"
+                    android:paddingHorizontal="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#5b400d" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background2_dark"
+>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="10dp"
+        android:background="@drawable/rounded_bg">
+
+        <Button
+            android:id="@+id/button_close_policy"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button_back"
+            android:fontFamily="@font/vhs_gothic"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Privacy Policy"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/privacy_policy_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/cornered_bg">
+
+        <TextView
+            android:id="@+id/privacy_policy_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textColor="#505050"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:text="Privacy Policy for LetterLasso
+            \nLast Updated: May 05, 2025
+            \n\nThis Privacy Policy describes how LetterLasso collects, uses, and shares information when you use our mobile game application, LetterLasso.\nBy downloading, accessing, or playing the Game, you consent to the practices described in this Privacy Policy.
+            \n\n1. Information We Collect
+            \n\na. Non-Personal Information:
+            \nWe may collect non-personal information about you, such as: Device Information: Including the type of device, operating system, device identifiers (e.g., Android Advertising ID or iOS Identifier for Advertising), language settings, and general location (e.g., country or region). Game Progress and Usage Data: Information about your gameplay, such as your progress levels, scores, in-game achievements, time spent playing, features used, and interactions with other players (if applicable). Analytics Data: We may use third-party analytics tools to collect information about how you use the Game, including crash reports, performance data, and usage patterns. This data is generally aggregated and anonymized.
+            \n\nb. Personal Information (Potentially Collected): Depending on the features of your Game and how you choose to interact with it, we may collect the following personal information: Account Information (if applicable): If you create an account within the Game (e.g., using email, Google Play Games, or Apple Game Center), we may collect your username, email address, and associated profile information.
+            \n\n2. How We Use Your Information
+            \n\nWe may use the collected information for the following purposes:
+            \nTo Provide and Improve the Game: To operate the Game, personalize your experience, track your progress, deliver updates and new features, and develop and improve the Game. To Display Advertisements (if applicable): To show you relevant advertisements within the Game. We may use third-party advertising partners who may collect and use your device identifiers and interests to serve targeted ads. Please refer to their privacy policies for more information. For Analytics and Research: To analyze Game usage, identify trends, monitor the performance of the Game, and conduct research to improve the player experience.
+            \n\n3. Sharing Your Information
+            \n\nWe may share your information with the following categories of third parties: Service Providers: We may engage third-party service providers to assist us with various operations, such as analytics, advertising, user support, and payment processing. These providers will have access to your information only to perform these tasks on our behalf and are obligated not to disclose or use it for other purposes. Advertising Partners (if applicable): We may share non-personal information and device identifiers with our advertising partners to deliver targeted ads within the Game.
+            \n\nContact Us
+            \n\nIf you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:
+            \nletterlaso@gmail.com
+            \nwww.letterlaso.com.ph
+            \n\nBy playing LetterLasso, you acknowledge that you have read and understood this Privacy Policy."
+            />
+    </ScrollView>
+</LinearLayout>

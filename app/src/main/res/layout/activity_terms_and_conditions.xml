@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background2_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="10dp"
+        android:background="@drawable/rounded_bg">
+
+        <Button
+            android:id="@+id/button_close_terms"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button_back"
+            android:fontFamily="@font/vhs_gothic"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Terms and Conditions"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/terms_and_conditions_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/cornered_bg">
+
+        <TextView
+            android:id="@+id/terms_and_conditions_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textColor="#505050"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:text="Terms and Conditions for LetterLasso
+            \nLast Updated: May 05, 2025
+            \n\nBy downloading, accessing, or playing LetterLasso, you agree to be bound by these Terms and Conditions. Please read them carefully.
+            \n\n1. Acceptance of Terms
+            \n\nThese Terms constitute a binding agreement between you and LetterLasso ('we,' 'us,' or 'our').
+            By using the Game, you signify your acceptance of these Terms. If you do not agree to these Terms, please do not download, access, or play the Game.
+            \n\n2. Use of the Game
+            \n\nSubject to these Terms, we grant you a non-exclusive, limited, revocable license to access and use the Game for your personal, non-commercial entertainment purposes.
+            \n\n3. User Conduct
+            \n\nYou agree not to:
+            \n(a) Modify, adapt, translate, reverse engineer, decompile, or disassemble any portion of the Game.
+            \n(b) Use the Game in any way that violates any applicable law or regulation.
+            \n(c) Interfere with or disrupt the operation of the Game or servers.
+            \n(d) Attempt to gain unauthorized access to any portion of the Game or related systems.
+            \n\n4. Changes to Terms
+            \n\nWe may update these Terms from time to time. We will notify you of any material changes by posting the updated Terms within the Game or through other reasonable means. Your continued use of the Game after the effective date of the updated Terms constitutes your acceptance of the changes.
+            \n\nContact Us
+            \n\nIf you have any questions or concerns about these Terms and Conditions, please contact us at:
+            \nletterlaso@gmail.com
+            \nwww.letterlaso.com.ph
+            \n\nBy playing LetterLasso, you acknowledge that you have read and understood these Terms and Conditions." />
+
+    </ScrollView>
+</LinearLayout>

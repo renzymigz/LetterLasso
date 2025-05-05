@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
+
     android:gravity="center"
     android:background="@drawable/background2_dark">
 
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:layout_margin="16dp"
-        android:background="@drawable/rounded_bg">
+        android:background="@drawable/rounded_bg_updated">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,26 +25,27 @@
             android:padding="10dp"
             android:gravity="center_vertical">
 
-            <TextView
-                android:fontFamily="@font/vhs_gothic"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="SETTINGS"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
             <Button
                 android:id="@+id/settings_close_button"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:fontFamily="@font/vhs_gothic"
-                android:background="@drawable/red_button_rounded"
-                android:text="X"
+                android:background="@drawable/button_back"
                 android:textColor="@color/white"
                 android:textSize="15sp"/>
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Settings"
+
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+
         </LinearLayout>
 
         <View
@@ -116,6 +117,7 @@
             <Button
                 android:id="@+id/button_policy"
                 android:layout_width="match_parent"
+
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
@@ -130,6 +132,7 @@
 
             <Button
                 android:id="@+id/button_terms"
+
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
@@ -145,6 +148,7 @@
 
             <Button
                 android:id="@+id/button_aboutus"
+
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
@@ -160,6 +164,7 @@
 
             <Button
                 android:id="@+id/button_signout"
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
