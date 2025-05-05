@@ -67,6 +67,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PrivacyPolicyActivity" />
+        <activity android:name=".TermsAndConditionsActivity" />
         <service android:name=".MusicService"/>
     </application>
 

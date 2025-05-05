@@ -44,30 +44,88 @@
                 android:textSize="15sp" />
         </LinearLayout>
 
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="3.5dp"
-            android:background="@color/white"/>
+            android:layout_height="120dp"
+            android:background="@drawable/play_button"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="25dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/vhs_gothic"
+                    android:text="OUR VISION"
+                    android:textAlignment="center"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="#5a400c"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="To make LetterLasso the most enjoyable word-puzzle adventure in your pocket. Created with care for word enthusiasts."
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:textColor="#505050"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="250dp"
+            android:layout_height="2dp"
+            android:background="#5a400c"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/vhs_gothic"
+            android:layout_gravity="center"
+            android:text="OUR DEVELOPERS"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/play_button"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingTop="20dp"
-            android:paddingBottom="16dp">
+            android:paddingBottom="20dp"
+            android:layout_marginBottom="10dp">
 
             <ImageView
                 android:id="@+id/profile_image1"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginStart="15dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/icon2" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -79,6 +137,7 @@
                     android:paddingTop="8dp"
                     android:text="Florence Azriel Migallos"
                     android:textAlignment="center"
+                    android:textColor="#5a400c"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -86,37 +145,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="'It is what it is.'"
-                    android:textAlignment="center"
+                    android:text="Motto: It is what it is."
+                    android:textColor="#505050"
                     android:textSize="12sp"
                     android:textStyle="italic" />
             </LinearLayout>
-        </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@color/white"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/play_button"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingTop="20dp"
-            android:paddingBottom="16dp">
+            android:paddingBottom="20dp">
 
             <ImageView
                 android:id="@+id/profile_image2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginStart="15dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/icon1" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -129,16 +188,19 @@
                     android:text="Danielle Maxine Ocampo"
                     android:textAlignment="center"
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="#5a400c"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="'Until all my scars bleed golden.'"
+                    android:text="Motto: Until all my scars bleed golden."
                     android:textAlignment="center"
                     android:textSize="12sp"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"
+                    android:textColor="#505050"/>
+
             </LinearLayout>
 
         </LinearLayout>

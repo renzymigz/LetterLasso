@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -16,6 +17,17 @@ import cit.edu.letterlasso.util.toast
 class ProfilePageActivity : Activity() {
     private lateinit var userPrefs: SharedPreferences
     private lateinit var gamePrefs: SharedPreferences
+    private lateinit var closeButton: Button
+    private lateinit var saveButton: Button
+    private lateinit var userNameField: EditText
+    private lateinit var userEmailField: EditText
+    private lateinit var userPasswordField: EditText
+    private lateinit var currentUserEmail: TextView
+    private lateinit var currentPassword: TextView
+    private lateinit var levelsUnlockedText: TextView
+    private lateinit var sharedPreferences: SharedPreferences
+    private var isSoundEnabled = true
+    private var buttonClickSound: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,21 +35,23 @@ class ProfilePageActivity : Activity() {
 
         userPrefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         gamePrefs = getSharedPreferences("game_progress", Context.MODE_PRIVATE)
-        
-        val closeButton = findViewById<Button>(R.id.profile_close_button)
-        val saveButton = findViewById<Button>(R.id.save_button)
-        val userNameField = findViewById<EditText>(R.id.user_name)
-        val userEmailField = findViewById<EditText>(R.id.user_email)
-        val userPasswordField = findViewById<EditText>(R.id.password)
-        val currentUserEmail = findViewById<TextView>(R.id.current_user_email)
-        val currentPassword = findViewById<TextView>(R.id.current_password)
-        val levelsUnlockedText = findViewById<TextView>(R.id.levels_unlocked_text)
+        sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
+        isSoundEnabled = sharedPreferences.getBoolean("isSoundEnabled", true)
+        buttonClickSound = MediaPlayer.create(this, R.raw.button_click)
+
+        closeButton = findViewById(R.id.profile_close_button)
+        saveButton = findViewById(R.id.save_button)
+        userNameField = findViewById(R.id.user_name)
+        userEmailField = findViewById(R.id.user_email)
+        userPasswordField = findViewById(R.id.password)
+        currentUserEmail = findViewById(R.id.current_user_email)
+        currentPassword = findViewById(R.id.current_password)
+        levelsUnlockedText = findViewById(R.id.levels_unlocked_text)
 
         // Load and display current user information
         val storedEmail = userPrefs.getString("email", "")
         val storedUsername = userPrefs.getString("username", storedEmail?.substringBefore("@") ?: "User")
         val storedPassword = userPrefs.getString("password", "")
-
 
         currentPassword.text = "Password" // Show dots for password
         userNameField.hint = "$storedUsername"
@@ -65,6 +79,7 @@ class ProfilePageActivity : Activity() {
         levelsUnlockedText.text = "$unlockedLevels/$totalLevels"
 
         closeButton.setOnClickListener {
+            playSoundEffect(buttonClickSound)
             Log.e("LetterLasso", "Close button now is clicked!")
             this.toast("Heading to landing page!")
             val intent = Intent(this, LandingPageActivity::class.java)
@@ -72,6 +87,7 @@ class ProfilePageActivity : Activity() {
         }
 
         saveButton.setOnClickListener {
+            playSoundEffect(buttonClickSound)
             val newEmail = userEmailField.text.toString().trim()
             val newPassword = userPasswordField.text.toString().trim()
 
@@ -89,6 +105,18 @@ class ProfilePageActivity : Activity() {
                 this.toast("Profile updated successfully!")
             }
         }
+    }
+
+    private fun playSoundEffect(mediaPlayer: MediaPlayer?) {
+        if (isSoundEnabled && mediaPlayer != null) {
+            mediaPlayer.start()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        buttonClickSound?.release()
+        buttonClickSound = null
     }
 
     private fun validateInputs(email: String, password: String): Boolean {
