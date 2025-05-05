@@ -195,7 +195,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="'If it's not broken, I'm not done'"
+                    android:text="'Built backwards, still works.'"
                     android:layout_marginTop="5dp"
                     android:textAlignment="center"
                     android:textSize="12sp"
