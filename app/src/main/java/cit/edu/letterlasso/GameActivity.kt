@@ -6,10 +6,6 @@ import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.BackgroundColorSpan
-import android.text.style.LeadingMarginSpan
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -20,7 +16,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
-import cit.edu.letterlasso.fragments.BottomNavFragment
 import cit.edu.letterlasso.fragments.NextLevelFragment
 import cit.edu.letterlasso.fragments.RetryLevelFragment
 import nl.dionsegijn.konfetti.core.Party
